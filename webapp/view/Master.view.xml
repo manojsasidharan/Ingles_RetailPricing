@@ -1,0 +1,184 @@
+<mvc:View displayBlock="true" controllerName="com.ingles.retail_pricing.Retail_Pricing.controller.Master" height="100%" xmlns="sap.m"
+	xmlns:f="sap.f" xmlns:vm="sap.ui.comp.variants" xmlns:fb="sap.ui.comp.filterbar" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
+	<f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<vm:VariantManagement standardItemText="Retail Pricing"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="false">
+				<f:content></f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<!-- DynamicPage Content -->
+		<f:content>
+			<fb:FilterBar considerGroupTitle="true" id="filterbar" search="onSearch" useToolbar="false" showGoButton="true">
+				<fb:filterGroupItems groupTitle="Group1">
+					<fb:FilterGroupItem groupName="G1" name="A" label="Pricing Family" visibleInAdvancedArea="true">
+						<fb:control>
+							<MultiInput value="001 Ingles"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" name="B" label="Vendor" visibleInAdvancedArea="true">
+						<fb:control>
+							<!--<MultiInput/>-->
+							<MultiInput id="multiInput" valueHelpRequest=".onValueHelpRequested" suggestionRows="{ path: '/ProductCollection',length: 50 }">
+								<suggestionColumns>
+									<Column>
+										<Label text="ProductId"/>
+									</Column>
+									<Column>
+										<Label text="Product Name"/>
+									</Column>
+									<Column>
+										<Label text="Category"/>
+									</Column>
+								</suggestionColumns>
+								<suggestionRows>
+									<ColumnListItem>
+										<cells>
+											<Label text="{ProductId}"/>
+											<Label text="{Name}"/>
+											<Label text="{Category}"/>
+										</cells>
+									</ColumnListItem>
+								</suggestionRows>
+							</MultiInput>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="G1" name="C" label="Material" visibleInAdvancedArea="true">
+						<fb:control>
+							<MultiInput/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" name="D" label="Vendor Item no" visibleInAdvancedArea="true">
+						<fb:control>
+							<MultiInput/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" name="E" label="UPC" visibleInAdvancedArea="true">
+						<fb:control>
+							<MultiInput/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" name="F" label="Price Family" visibleInAdvancedArea="true">
+						<fb:control>
+							<Select id="pricfam" forceSelection="false" selectedKey="0000">
+								<core:Item key="0000" text=""/>
+								<core:Item key="2513" text="2513 Citra Montepulciano"/>
+								<core:Item key="2514" text="2514 Blue Fish Pinot Grigio"/>
+								<core:Item key="2515" text="2515 Night Harvest Chardonnay"/>
+								<core:Item key="2516" text="2516 Night Harvest Chardonnay"/>
+								<core:Item key="2517" text="2517 Toasted Head Chardonnay"/>
+								<core:Item key="2518" text="2518 Clos Du Bois Cabernet Sauvigno"/>
+								<core:Item key="2519" text="2519 Casarsa Chardonnay"/>
+								<core:Item key="2520" text="2520 Hogue Sauv Blanc"/>
+							</Select>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" name="G" label="Cost Family" visibleInAdvancedArea="true">
+						<fb:control>
+							<Select id="costfam" forceSelection="false" selectedKey="0000">
+								<core:Item key="0000" text=""/>
+								<core:Item key="2513" text="2513 Citra Montepulciano"/>
+								<core:Item key="2514" text="2514 Blue Fish Pinot Grigio"/>
+								<core:Item key="2515" text="2515 Night Harvest Chardonnay"/>
+								<core:Item key="2516" text="2516 Night Harvest Chardonnay"/>
+								<core:Item key="2517" text="2517 Toasted Head Chardonnay"/>
+								<core:Item key="2518" text="2518 Clos Du Bois Cabernet Sauvigno"/>
+								<core:Item key="2519" text="2519 Casarsa Chardonnay"/>
+								<core:Item key="2520" text="2520 Hogue Sauv Blanc"/>
+							</Select>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" name="H" label="Location Code" visibleInAdvancedArea="true">
+						<fb:control>
+							<MultiInput/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G1" name="I" label="Material Group" visibleInAdvancedArea="true">
+						<fb:control>
+							<MultiInput/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<!--<fb:FilterGroupItem groupName="G1" name="J" label="Department" visibleInAdvancedArea="true">-->
+					<!--	<fb:control>-->
+					<!--		<MultiInput/>-->
+					<!--	</fb:control>-->
+					<!--</fb:FilterGroupItem>-->
+					<fb:FilterGroupItem groupName="G2" name="K" label="Price Strategy" visibleInAdvancedArea="true">
+						<fb:control>
+							<Select id="Strategy" forceSelection="false" selectedKey="{query>/PriceStrategy}">
+								<core:Item key="001" text="001 Ingles"/>
+								<core:Item key="002" text="002 Sav-Mor"/>
+								<core:Item key="003" text="003 I-Markets"/>
+								<core:Item key="201" text="201 AL-Ingles"/>
+								<core:Item key="202" text="202 AL-Sav-Mor"/>
+								<core:Item key="203" text="203 AL-I-Market"/>
+								<core:Item key="204" text="204 GA-Ingles"/>
+								<core:Item key="205" text="205 GA-Sav-Mor"/>
+								<core:Item key="206" text="206 GA-I-Market"/>
+								<core:Item key="213" text="213 TN- Ingles"/>
+							</Select>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G2" name="L" label="Price Level" visibleInAdvancedArea="true">
+						<fb:control>
+							<Select forceSelection="false" selectedKey="00">
+								<core:Item key="00" text="Level 0 - Default"/>
+								<core:Item key="01" text="Level 1 - With Card"/>
+								<core:Item key="02" text="Level 2 - Targeted"/>
+								<core:Item key="03" text="Level 3 - Target Plus (Layered)"/>
+							</Select>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G2" name="M" label="Price Type" visibleInAdvancedArea="true">
+						<fb:control>
+							<Select id="Type" forceSelection="false" selectedKey="{query>/PriceType}">
+								<core:Item key="01" text="01 - Regular"/>
+								<core:Item key="20" text="20 - Advantage"/>
+								<core:Item key="25" text="25 - Price Freeze dept 0005 only"/>
+								<core:Item key="30" text="30 - AD/Sale"/>
+							</Select>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G2" name="N" label="Date From" visibleInAdvancedArea="true">
+						<fb:control>
+							<DatePicker value="02/17/2021" valueFormat="MM/dd/yyyy"></DatePicker>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G2" name="O" label="Date To" visibleInAdvancedArea="true">
+						<fb:control>
+							<DatePicker value="12/31/9999" valueFormat="MM/dd/yyyy" width="4rem"></DatePicker>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="G2" label="Process" name="Z" visibleInAdvancedArea="true" >
+						<fb:control>
+							<RadioButtonGroup id="rbg2" columns="2" selectedIndex="2" >
+								<RadioButton id="RB1" text="Create" selected="true"/>
+								<RadioButton id="RB2" text="Display/Change"/>
+							</RadioButtonGroup>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<!--<fb:FilterGroupItem groupName="G2" name="Z1" label="Display/Update" visibleInAdvancedArea="true">-->
+					<!--	<fb:control></fb:control>-->
+					<!--</fb:FilterGroupItem>-->
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

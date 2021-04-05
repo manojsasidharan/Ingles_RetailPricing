@@ -1,0 +1,125 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table">
+	<table:Table id="Table" selectionMode="MultiToggle" visibleRowCount="10" alternateRowColors="true" fixedColumnCount="2" rowActionCount="1"
+		columnResize="itemColumnResize" columnMove="itemColumnMove">
+		<table:noData></table:noData>
+		<table:toolbar>
+			<Toolbar>
+				<Title id="Ttitle" text="Retail Pricing (9)"/>
+				<ToolbarSpacer/>
+				<!--<Button id="BCopy" icon="sap-icon://copy" text="Copy" type="Transparent" visible="false"/>-->
+				<Button id="Tfilter" icon="sap-icon://clear-filter" tooltip="Clear all filters" press="clearAllFilters" visible="false"/>
+				<Button id="Treset" icon="sap-icon://synchronize" tooltip="Synchronize Data" press="onSync" width="auto" visible="false"/>
+				<Button id="Tcreate" icon="sap-icon://create-form" tooltip="Add new rows" press="onAddRows" visible="false"></Button>
+			</Toolbar>
+		</table:toolbar>
+		<table:rowSettingsTemplate>
+			<table:RowSettings highlight="{statusIcon}"/>
+		</table:rowSettingsTemplate>
+		<table:columns>
+			<table:Column name="Material" width="9rem" filterProperty="Material" sortProperty="Material" tooltip="Material">
+				<Label text="Material"/>
+				<table:template>
+					<HBox>
+						<core:Icon src="sap-icon://color-fill" class="size1 sapUiTinyMarginTop sapUiTinyMarginEnd" color="{Color}" visible="true"></core:Icon>
+						<Input value="{Material}" editable="false"/>
+						<!--<Text text="{Material}" wrapping="false"/>-->
+					</HBox>
+				</table:template>
+			</table:Column>
+			<table:Column name="UPC" width="8rem" sortProperty="UPC" filterProperty="UPC" tooltip="UPC">
+				<Label text="UPC"/>
+				<table:template>
+					<Input value="{UPC}" editable="false"/>
+					<!--<Text text="{LocationCode}" wrapping="false"/>-->
+				</table:template>
+			</table:Column>
+			<!--<table:Column name="Vendor" width="7rem" sortProperty="Vendor" filterProperty="Vendor" tooltip="Vendor">-->
+			<!--	<Label text="Vendor"/>-->
+			<!--	<table:template>-->
+			<!--		<Input value="{Vendor}" editable="false"/>-->
+			<!--<Text text="{Vendor}" wrapping="false"/>-->
+			<!--	</table:template>-->
+			<!--</table:Column>-->
+			<table:Column name="Description" width="15rem" sortProperty="Description" filterProperty="Description" tooltip="Description">
+				<Label text="Description"/>
+				<table:template>
+					<Text text="{Description}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+			<!--<table:Column name="valid_from" width="11rem"  tooltip="Valid From">-->
+			<!--	<Label text="Valid From"/>-->
+			<!--	<table:template>-->
+			<!--		<DatePicker value="{valid_from}" valueFormat="MM/dd/yyyy" editable="false"></DatePicker>-->
+			<!--	</table:template>-->
+			<!--</table:Column>-->
+			<!--<table:Column name="valid_to" width="11rem"  tooltip="Valid To">-->
+			<!--	<Label text="Valid To" wrapping="true"/>-->
+			<!--	<table:template>-->
+			<!--		<DatePicker value="{valid_to}" valueFormat="MM/dd/yyyy" editable="false"></DatePicker>-->
+			<!--	</table:template>-->
+			<!--</table:Column>-->
+			<table:Column name="Last_Cost" width="5rem" tooltip="Last Cost">
+				<Label text="Last Unit Cost" wrapping="true"/>
+				<table:template>
+					<Text text="{Last_Cost}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+			<table:Column name="Allowance" width="4rem" tooltip="Allowance">
+				<Label text="Allowance" wrapping="true" />
+				<table:template>
+					<Text text="{Allowance}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+			<table:Column name="curr_retail" width="6rem" tooltip="Current Retail">
+				<Label text="Current Retail" wrapping="true"/>
+				<table:template>
+					<Text text="{Price}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+			<table:Column name="curr_gp" width="6rem" tooltip="Current GP">
+				<Label text="Current GM %" wrapping="true"/>
+				<table:template>
+					<Text text="{Margin}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+			<table:Column name="Price" width="8rem" tooltip="Price">
+				<Label text="New Retail"/>
+				<table:template>
+					<HBox>
+						<Input value="{Price}" width="4rem" editable="false" liveChange="livecalculate"/>
+						<Button icon="sap-icon://reset" class="size1 sapUiTinyMarginBegin" press="onreset"/>
+					</HBox>
+				</table:template>
+			</table:Column>
+			<table:Column name="new_gp" width="6rem" tooltip="New GP">
+				<Label text="New GM %" wrapping="true"/>
+				<table:template>
+					<Text text="{allow}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+			<table:Column name="new_allow" width="6rem" tooltip="New GM % with Allowance">
+				<Label text="New GM % with Allowance" wrapping="true"/>
+				<table:template>
+					<Text text="{new_allow}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+			<table:Column name="Unit_sell" width="6rem" tooltip="Unit Sell" visible="false">
+				<Label text="Unit Sell"/>
+				<table:template>
+					<Text text="{Unit_sell}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+			<table:Column name="Multiplier" width="6rem" tooltip="Multiplier" visible="false">
+				<Label text="Multiplier"/>
+				<table:template>
+					<Text text="{Multiplier}" wrapping="false"/>
+				</table:template>
+			</table:Column>
+		</table:columns>
+		<table:rowActionTemplate>
+			<table:RowAction>
+				<table:RowActionItem type="Delete" text="Delete" press="onDeletePress"></table:RowActionItem>
+			</table:RowAction>
+		</table:rowActionTemplate>
+	</table:Table>
+</core:FragmentDefinition>

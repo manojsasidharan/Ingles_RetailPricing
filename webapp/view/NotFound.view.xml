@@ -1,0 +1,9 @@
+<mvc:View
+	controllerName="com.ingles.retail_pricing.Retail_Pricing.controller.NotFound"
+	height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	displayBlock="true"
+	>
+	<!--<MessagePage showHeader="false" icon="sap-icon://filter"/>-->
+</mvc:View>

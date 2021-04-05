@@ -1,0 +1,169 @@
+<mvc:View displayBlock="true" controllerName="com.ingles.retail_pricing.Retail_Pricing.controller.Detail" height="100%" xmlns="sap.uxap"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core">
+	<m:Page showHeader="false">
+		<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false"
+			headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+			<headerTitle>
+				<ObjectPageDynamicHeaderTitle>
+					<expandedHeading>
+						<m:Title text="Maintaining Retail Pricing" wrapping="true" class="sapUiSmallMarginEnd"/>
+					</expandedHeading>
+					<snappedHeading>
+						<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+							<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+								<f:Avatar src="../../../../../../../{products>ProductPicUrl}" displaySize="S" displayShape="Square"/>
+								<m:Title text=" Maintaining Retail Pricing" wrapping="true" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
+							</m:FlexBox>
+						</m:FlexBox>
+					</snappedHeading>
+					<navigationActions>
+						<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtn"
+							tooltip="Enter Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+						<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn"
+							tooltip="Exit Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+						<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose" tooltip="Close column"
+							visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+					</navigationActions>
+					<actions>
+						<!--<m:Button id="BUpload" icon="sap-icon://upload" text="Upload" type="Transparent" visible="false"/>-->
+						<m:Button icon="sap-icon://edit" text="Edit" type="Emphasized" press="onEdit"/>
+					</actions>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<headerContent>
+				<m:FlexBox wrap="Wrap" fitContainer="true">
+					<!--<f:Avatar src="../../../../../../../{products>ProductPicUrl}" displaySize="S" displayShape="Square"-->
+					<!--	class="sapUiTinyMarginTop sapUiTinyMarginEnd"></f:Avatar>-->
+					<m:VBox>
+						<layout:HorizontalLayout>
+							<m:HBox>
+								<m:Label text="Price Strategy:" design="Bold" wrapping="true" />
+								<m:ObjectStatus text="{query>/PriceStrategy}" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
+							</m:HBox>
+							<m:HBox class="sapUiLargeMarginBegin">
+								<m:Label text="Price Level:" design="Bold" wrapping="true" />
+								<m:ObjectStatus text=" 00 - Default" class="sapUiSmallMarginBegin sapUiTinyMarginBottom"/>
+							</m:HBox>
+							<m:HBox class="sapUiLargeMarginBegin">
+								<m:Label text="Price Type:" design="Bold" wrapping="true" />
+								<m:ObjectStatus text="{query>/PriceType}" class="sapUiSmallMarginBegin sapUiTinyMarginBottom"/>
+							</m:HBox>
+						
+							<m:HBox class="sapUiLargeMarginBegin">
+								<m:Label text="Vendor Type:" design="Bold" wrapping="true" />
+								<m:ObjectStatus text=" W / H" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
+							</m:HBox>
+							<m:HBox class="sapUiLargeMarginBegin">
+								<m:Label text="Vendor ID:" design="Bold" wrapping="true" />
+								<m:ObjectStatus text=" DC10" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
+							</m:HBox>
+							<m:HBox class="sapUiLargeMarginBegin">
+								<m:Label text="Vendor Name:" design="Bold" wrapping="true" />
+								<m:ObjectStatus text=" Ingles DC" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
+							</m:HBox>
+						</layout:HorizontalLayout>
+						<layout:HorizontalLayout class="sapUiSmallMarginTop">
+							<m:HBox>
+								<m:Label text="From Date:" design="Bold" wrapping="true" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+								<m:DatePicker value="01/05/2021" valueFormat="MM/dd/yyyy" class="sapUiSmallMarginBegin  sapUiTinyMarginTop"></m:DatePicker>
+							</m:HBox>
+							<m:HBox>
+								<m:Label text="To Date:" design="Bold" wrapping="true" class="sapUiMediumMarginBegin sapUiSmallMarginTop"/>
+								<m:DatePicker value="12/31/9999" valueFormat="MM/dd/yyyy" class="sapUiSmallMarginBegin  sapUiTinyMarginTop"></m:DatePicker>
+							</m:HBox>
+						</layout:HorizontalLayout >
+					</m:VBox>
+					
+						
+				
+				</m:FlexBox>
+			</headerContent>
+			<sections id="section">
+				<ObjectPageSection id="massmaint" title="Manual Maintenance">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<m:VBox>
+									<core:Fragment fragmentName="com.ingles.retail_pricing.Retail_Pricing.fragments.table" type="XML"/>
+								</m:VBox>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection id="massupload" title="Mass Upload">
+					<subSections>
+						<ObjectPageSubSection>
+							<blocks>
+								<m:UploadCollection id="UploadCollection" multiple="true" fileType="txt,doc,png,pdf,docx" beforeUploadStarts="onBeforeUploadStarts"
+									uploadComplete="onUploadComplete" fileDeleted="onFileDeleted" change="onChange" items="{ path: '/items', templateShareable: false }"
+									numberOfAttachmentsText="Uploaded (1)" uploadEnabled="false" uploadButtonInvisible="false" noDataText="Upload Files Here">
+									<m:toolbar>
+										<m:OverflowToolbar id="myId">
+											<m:Title id="attachmentTitle"/>
+											<m:ToolbarSpacer/>
+											<m:SearchField width="10rem" search="onSearch"/>
+											<m:RadioButtonGroup id="RB" columns="3" selectedIndex="0">
+												<m:buttons>
+													<m:RadioButton id="RB1" text="Online" enabled="false"/>
+													<m:RadioButton id="RB2" text="Background" enabled="false"/>
+												</m:buttons>
+											</m:RadioButtonGroup>
+											<m:UploadCollectionToolbarPlaceholder/>
+										</m:OverflowToolbar>
+									</m:toolbar>
+									<m:items>
+										<m:UploadCollectionItem documentId="{documentId}" fileName="{fileName}" mimeType="{mimeType}" thumbnailUrl="{thumbnailUrl}" url="{url}"
+											enableEdit="true" enableDelete="true" visibleDelete="true" visibleEdit="true" attributes="{path : 'attributes', templateShareable : false}"
+											statuses="{path : 'statuses', templateShareable : false}" selected="{selected}">
+											<m:attributes>
+												<m:ObjectAttribute title="{title}" text="{text}" active="{active}" press="onAttributePress"/>
+											</m:attributes>
+											<m:statuses>
+												<m:ObjectStatus title="{title}" text="{text}" state="{state}"/>
+											</m:statuses>
+										</m:UploadCollectionItem>
+									</m:items>
+								</m:UploadCollection>
+								<!--<upload:UploadSet id="UploadSet" instantUpload="true" showIcons="true" uploadEnabled="true" terminationEnabled="true"-->
+								<!--	fileTypes="txt,doc,png" maxFileNameLength="30" maxFileSize="200" mediaTypes="text/plain,application/msword,image/jpeg"-->
+								<!--	uploadUrl="../../../../upload" items="{path: '/items', templateShareable: false}">-->
+								<!--	<upload:toolbar>-->
+								<!--		<m:OverflowToolbar>-->
+								<!--			<m:Button id="uploadSelectedButton" text="Process Upload" press="onUploadSelectedButton"/>-->
+								<!--<m:Button id="downloadSelectedButton" text="Download selected" press="onDownloadSelectedButton"/>-->
+								<!--		</m:OverflowToolbar>-->
+								<!--	</upload:toolbar>-->
+								<!--	<upload:items>-->
+								<!--		<upload:UploadSetItem id="item" fileName="{fileName}" mediaType="{mediaType}" url="{url}" thumbnailUrl="{thumbnailUrl}"-->
+								<!--			attributes="{path: 'attributes', templateShareable: false}" markers="{path: 'markers', templateShareable: false}"-->
+								<!--			statuses="{path: 'statuses', templateShareable: false}" uploadState="{uploadState}">-->
+								<!--			<upload:attributes>-->
+								<!--				<m:ObjectAttribute title="{title}" text="{text}" active="{active}"/>-->
+								<!--			</upload:attributes>-->
+								<!--			<upload:markers>-->
+								<!--				<m:ObjectMarker type="{type}" visibility="{visibility}"/>-->
+								<!--			</upload:markers>-->
+								<!--			<upload:statuses>-->
+								<!--				<m:ObjectStatus title="{title}" text="{text}" state="{state}" icon="{icon}" active="{active}"/>-->
+								<!--			</upload:statuses>-->
+								<!--		</upload:UploadSetItem>-->
+								<!--	</upload:items>-->
+								<!--</upload:UploadSet>-->
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+		<m:footer>
+			<m:OverflowToolbar visible="true">
+				<m:Button id="messagePopoverBtn" icon="sap-icon://message-popup" type="Emphasized" text="{= ${message>/}.length }"
+					visible="{= ${message>/}.length > 0 }" press="handleMessagePopoverPress"/>
+				<m:ToolbarSpacer/>
+				<m:Button id="Bactive" type="Emphasized" text="Activate" visible="false" press="onsave"/>
+				<m:Button id="Bsave" type="Accept" text="Save" visible="false" press="onsave"/>
+			</m:OverflowToolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>
