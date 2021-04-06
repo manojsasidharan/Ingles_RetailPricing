@@ -31,13 +31,15 @@ sap.ui.define([
 
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
-			this.setModel(models.oViewModel(),"addrow");
-			this.setModel(models.onewModel(),"query");
-		
+			this.setModel(models.oViewModel(), "addrow");
+			this.setModel(models.onewModel(), "query");
+			this.setModel(models.appControlModel(), "appControl");
+			this.setModel(models.masterDataModel(), "MasterDataModel");
+
 		},
 		getHelper: function () {
 			var oFCL = this.getRootControl().byId("app"),
-			
+
 				oSettings = {
 					defaultTwoColumnLayoutType: LayoutType.TwoColumnsBeginExpanded,
 					defaultThreeColumnLayoutType: LayoutType.ThreeColumnsMidExpanded,
@@ -46,7 +48,10 @@ sap.ui.define([
 				};
 
 			return FlexibleColumnLayoutSemanticHelper.getInstanceFor(oFCL, oSettings);
-		}
+		},
+		destroy: function () {
+			sap.ui.core.UIComponent.prototype.destroy.apply(this, arguments);
+		}		
 	});
 	return Component;
 });

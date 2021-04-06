@@ -27,7 +27,7 @@
 					</navigationActions>
 					<actions>
 						<!--<m:Button id="BUpload" icon="sap-icon://upload" text="Upload" type="Transparent" visible="false"/>-->
-						<m:Button icon="sap-icon://edit" text="Edit" type="Emphasized" press="onEdit"/>
+						<m:Button icon="sap-icon://edit" text="Edit" type="Emphasized" press="onEdit" visible="{=((${appControl>/FilterInput/Edit} === true) ? false : true)}"/>
 					</actions>
 				</ObjectPageDynamicHeaderTitle>
 			</headerTitle>
@@ -66,7 +66,7 @@
 						<layout:HorizontalLayout class="sapUiSmallMarginTop">
 							<m:HBox>
 								<m:Label text="From Date:" design="Bold" wrapping="true" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
-								<m:DatePicker value="01/05/2021" valueFormat="MM/dd/yyyy" class="sapUiSmallMarginBegin  sapUiTinyMarginTop"></m:DatePicker>
+								<m:DatePicker valueFormat="MM/dd/yyyy" value="{query>/FromDate}" class="sapUiSmallMarginBegin  sapUiTinyMarginTop"></m:DatePicker>
 							</m:HBox>
 							<m:HBox>
 								<m:Label text="To Date:" design="Bold" wrapping="true" class="sapUiMediumMarginBegin sapUiSmallMarginTop"/>

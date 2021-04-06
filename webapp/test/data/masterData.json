@@ -1,0 +1,38 @@
+{	"vendors": [{
+		"vendor": "834",
+		"vendorName": "CCBCC-CONA",
+		"salesPerson": "Griggs Candler",
+		"telephone": "999999834"
+	}, {
+		"vendor": "344",
+		"vendorName": "KRAFT FOODS GROUP INC.",
+		"salesPerson": "Joey Outlaw",
+		"telephone": "999999344"
+	}, {
+		"vendor": "3264",
+		"vendorName": "PERDUE ORGANIC CHICKEN",
+		"salesPerson": "Peter Partrick",
+		"telephone": "999993264"
+	}, {
+		"vendor": "40133",
+		"vendorName": "CLOROX - BURT'S BEES INC",
+		"salesPerson": "Steve Bernard",
+		"telephone": "999940133"
+	}, {
+		"vendor": "1507626",
+		"vendorName": "UNFI - FROZEN",
+		"salesPerson": "BRAD VICKERY ",
+		"telephone": "609-784-4451"
+	}, {
+		"vendor": "3853",
+		"vendorName": "HORMEL FOODS",
+		"salesPerson": "Carl Lee ",
+		"telephone": "999993853"
+	}, {
+		"vendor": "6001",
+		"vendorName": "BAKERY SCALE ITEMS",
+		"salesPerson": "TIM DAVEY",
+		"telephone": "8006355066"
+	}]
+	
+	}

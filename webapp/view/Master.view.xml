@@ -20,33 +20,13 @@
 				<fb:filterGroupItems groupTitle="Group1">
 					<fb:FilterGroupItem groupName="G1" name="A" label="Pricing Family" visibleInAdvancedArea="true">
 						<fb:control>
-							<MultiInput value="001 Ingles"/>
+							<MultiInput value=""/>
 						</fb:control>
 					</fb:FilterGroupItem>
 					<fb:FilterGroupItem groupName="G1" name="B" label="Vendor" visibleInAdvancedArea="true">
 						<fb:control>
-							<!--<MultiInput/>-->
-							<MultiInput id="multiInput" valueHelpRequest=".onValueHelpRequested" suggestionRows="{ path: '/ProductCollection',length: 50 }">
-								<suggestionColumns>
-									<Column>
-										<Label text="ProductId"/>
-									</Column>
-									<Column>
-										<Label text="Product Name"/>
-									</Column>
-									<Column>
-										<Label text="Category"/>
-									</Column>
-								</suggestionColumns>
-								<suggestionRows>
-									<ColumnListItem>
-										<cells>
-											<Label text="{ProductId}"/>
-											<Label text="{Name}"/>
-											<Label text="{Category}"/>
-										</cells>
-									</ColumnListItem>
-								</suggestionRows>
+							<MultiInput name="VendorInput" id="VendorInput" valueHelpRequest=".onVendorValueHelp"
+							tokenUpdate=".tokenUpdate($event, '/FilterInput/Vendor')" > 
 							</MultiInput>
 						</fb:control>
 					</fb:FilterGroupItem>
@@ -150,7 +130,7 @@
 					</fb:FilterGroupItem>
 					<fb:FilterGroupItem groupName="G2" name="N" label="Date From" visibleInAdvancedArea="true">
 						<fb:control>
-							<DatePicker value="02/17/2021" valueFormat="MM/dd/yyyy"></DatePicker>
+							<DatePicker id="fromDate" valueFormat="MM/dd/yyyy" value="{query>/FromDate}" ></DatePicker>
 						</fb:control>
 					</fb:FilterGroupItem>
 					<fb:FilterGroupItem groupName="G2" name="O" label="Date To" visibleInAdvancedArea="true">
@@ -160,7 +140,7 @@
 					</fb:FilterGroupItem>
 					<fb:FilterGroupItem groupName="G2" label="Process" name="Z" visibleInAdvancedArea="true" >
 						<fb:control>
-							<RadioButtonGroup id="rbg2" columns="2" selectedIndex="2" >
+							<RadioButtonGroup id="rbg2" columns="2" selectedIndex="{appControl>/FilterInput/Mode}" >
 								<RadioButton id="RB1" text="Create" selected="true"/>
 								<RadioButton id="RB2" text="Display/Change"/>
 							</RadioButtonGroup>

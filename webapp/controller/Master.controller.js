@@ -11,17 +11,18 @@ sap.ui.define([
 	"sap/m/ColumnListItem",
 	"sap/m/Label",
 	"sap/m/SearchField",
-	"sap/m/Token"
+	"sap/m/Token",
+	"com/ingles/retail_pricing/Retail_Pricing/controller/ValueHelper"
 ], function (JSONModel, Controller, Filter, FilterOperator, Sorter, MessageBox, UriParameters, compLibrary, typeString, ColumnListItem,
-	Label, SearchField, Token) {
+	Label, SearchField, Token, ValueHelper) {
 	"use strict";
 
 	return Controller.extend("com.ingles.retail_pricing.Retail_Pricing.controller.Master", {
 		onInit: function () {
 			this.oRouter = this.getOwnerComponent().getRouter();
 			this._bDescendingSort = false;
-			this._oMultiInput = this.getView().byId("multiInput");
-			this._oMultiInput.addValidator(this._onMultiInputValidate);
+			this._oMultiInput = this.getView().byId("VendorInput");
+			// this._oMultiInput.addValidator(this.tokenUpdate);
 			this._oMultiInput.setTokens(this._getDefaultTokens());
 			var scPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/columnsModel.json");
 			this.oColModel = new JSONModel(scPath);
@@ -30,7 +31,11 @@ sap.ui.define([
 			this.getView().setModel(this.oProductsModel);
 
 			this.oRouter.getRoute("notFound").attachPatternMatched(this._getQuery, this);
+
+			this._vendorValueHelp = new ValueHelper(this, 'VENDOR');
+
 		},
+
 		_getQuery: function (oEvent) {
 
 			var oHashChanger = new sap.ui.core.routing.HashChanger();
@@ -45,42 +50,64 @@ sap.ui.define([
 					this.getOwnerComponent().getModel("query").setProperty("/filename", "closeoutdata.json");
 				} else if (decodeURIComponent(value.pricetype) === "01" & decodeURIComponent(value.pricestrategy) === "001") {
 					this.getOwnerComponent().getModel("query").setProperty("/filename", "data.json");
-				}else if (decodeURIComponent(value.pricetype) === "01" & decodeURIComponent(value.pricestrategy) === "213") {
+				} else if (decodeURIComponent(value.pricetype) === "01" & decodeURIComponent(value.pricestrategy) === "213") {
 					this.getOwnerComponent().getModel("query").setProperty("/filename", "dsdregular.json");
-				}else if (decodeURIComponent(value.pricetype) === "20" & decodeURIComponent(value.pricestrategy) === "201") {
+				} else if (decodeURIComponent(value.pricetype) === "20" & decodeURIComponent(value.pricestrategy) === "201") {
 					this.getOwnerComponent().getModel("query").setProperty("/filename", "dsdclose.json");
 				}
 			}
 
 		},
-		_onMultiInputValidate: function (oArgs) {
-			if (oArgs.suggestionObject) {
-				var oObject = oArgs.suggestionObject.getBindingContext().getObject(),
-					oToken = new Token();
+		// _onMultiInputValidate: function (oArgs) {
+		// 	if (oArgs.suggestionObject) {
+		// 		var oObject = oArgs.suggestionObject.getBindingContext().getObject(),
+		// 			oToken = new Token();
 
-				oToken.setKey(oObject.ProductId);
-				oToken.setText(oObject.Name + " (" + oObject.ProductId + ")");
-				return oToken;
+		// 		oToken.setKey(oObject.ProductId);
+		// 		oToken.setText(oObject.Name + " (" + oObject.ProductId + ")");
+		// 		return oToken;
+		// 	}
+
+		// 	return null;
+		// },
+		
+		tokenUpdate: function (oEvent, oPath) {
+			var sType = oEvent.getParameter("type"),
+				aAddedTokens = oEvent.getParameter("addedTokens"),
+				aRemovedTokens = oEvent.getParameter("removedTokens"),
+				oModel = this.getView().getModel("appControl"),
+				aContexts = oModel.getProperty(oPath);
+
+			switch (sType) {
+				// add new context to the data of the model, when new token is being added
+			case "added":
+				aAddedTokens.forEach(function (oToken) {
+					aContexts.push({
+						key: oToken.getKey(),
+						text: oToken.getKey()
+					});
+				});
+				break;
+				// remove contexts from the data of the model, when tokens are being removed
+			case "removed":
+				aRemovedTokens.forEach(function (oToken) {
+					aContexts = aContexts.filter(function (oContext) {
+						return oContext.key !== oToken.getKey();
+					});
+				});
+				break;
+			default:
+				break;
 			}
 
-			return null;
-		},
-		_getDefaultTokens: function () {
-			var ValueHelpRangeOperation = compLibrary.valuehelpdialog.ValueHelpRangeOperation;
-			var oToken1 = new Token({
-				key: "1002",
-				text: "1002"
-			});
+			oModel.setProperty(oPath, aContexts);
 
-			var oToken2 = new Token({
-				key: "range_0",
-				text: "!(=HT-1000)"
-			}).data("range", {
-				"exclude": true,
-				"operation": ValueHelpRangeOperation.EQ,
-				"keyField": "ProductId",
-				"value1": "HT-1000",
-				"value2": ""
+		},		
+		
+		_getDefaultTokens: function () {
+			var oToken1 = new Token({
+				key: "DC10",
+				text: "DC10"
 			});
 
 			return [oToken1];
@@ -140,6 +167,13 @@ sap.ui.define([
 
 			// we'll store the parameters here
 			var obj = {};
+			var attribute = "";
+			var componentData = this.getOwnerComponent().getComponentData();
+			for (var property in componentData.startupParameters) {
+				attribute = property.toLowerCase();
+				obj[attribute] = componentData.startupParameters[property][0];
+			}
+			return obj;
 
 			// if query string exists
 			if (queryString) {
@@ -197,54 +231,59 @@ sap.ui.define([
 
 			return obj;
 		},
-		onValueHelpRequested: function () {
-			var aCols = this.oColModel.getData().cols;
-			this._oBasicSearchField = new SearchField({
-				showSearchButton: false
-			});
+		// onValueHelpRequested: function () {
+		// 	var aCols = this.oColModel.getData().cols;
+		// 	this._oBasicSearchField = new SearchField({
+		// 		showSearchButton: false
+		// 	});
 
-			this._oValueHelpDialog = sap.ui.xmlfragment("com.ingles.retail_pricing.Retail_Pricing.fragments.ValueHelpDialogFilterbar", this);
-			this.getView().addDependent(this._oValueHelpDialog);
+		// 	this._oValueHelpDialog = sap.ui.xmlfragment("com.ingles.retail_pricing.Retail_Pricing.fragments.ValueHelpDialogFilterbar", this);
+		// 	this.getView().addDependent(this._oValueHelpDialog);
 
-			this._oValueHelpDialog.setRangeKeyFields([{
-				label: "Product",
-				key: "ProductId",
-				type: "string",
-				typeInstance: new typeString({}, {
-					maxLength: 7
-				})
-			}]);
+		// 	this._oValueHelpDialog.setRangeKeyFields([{
+		// 		label: "Product",
+		// 		key: "ProductId",
+		// 		type: "string",
+		// 		typeInstance: new typeString({}, {
+		// 			maxLength: 7
+		// 		})
+		// 	}]);
 
-			var oFilterBar = this._oValueHelpDialog.getFilterBar();
-			oFilterBar.setFilterBarExpanded(false);
-			oFilterBar.setBasicSearch(this._oBasicSearchField);
+		// 	var oFilterBar = this._oValueHelpDialog.getFilterBar();
+		// 	oFilterBar.setFilterBarExpanded(false);
+		// 	oFilterBar.setBasicSearch(this._oBasicSearchField);
 
-			this._oValueHelpDialog.getTableAsync().then(function (oTable) {
-				oTable.setModel(this.oProductsModel);
-				oTable.setModel(this.oColModel, "columns");
+		// 	this._oValueHelpDialog.getTableAsync().then(function (oTable) {
+		// 		oTable.setModel(this.oProductsModel);
+		// 		oTable.setModel(this.oColModel, "columns");
 
-				if (oTable.bindRows) {
-					oTable.bindAggregation("rows", "/ProductCollection");
-				}
+		// 		if (oTable.bindRows) {
+		// 			oTable.bindAggregation("rows", "/ProductCollection");
+		// 		}
 
-				if (oTable.bindItems) {
-					oTable.bindAggregation("items", "/ProductCollection", function () {
-						return new ColumnListItem({
-							cells: aCols.map(function (column) {
-								return new Label({
-									text: "{" + column.template + "}"
-								});
-							})
-						});
-					});
-				}
+		// 		if (oTable.bindItems) {
+		// 			oTable.bindAggregation("items", "/ProductCollection", function () {
+		// 				return new ColumnListItem({
+		// 					cells: aCols.map(function (column) {
+		// 						return new Label({
+		// 							text: "{" + column.template + "}"
+		// 						});
+		// 					})
+		// 				});
+		// 			});
+		// 		}
 
-				this._oValueHelpDialog.update();
-			}.bind(this));
+		// 		this._oValueHelpDialog.update();
+		// 	}.bind(this));
 
-			this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
-			this._oValueHelpDialog.open();
+		// 	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
+		// 	this._oValueHelpDialog.open();
+		// },
+
+		onVendorValueHelp: function (oEvent) {
+			this._vendorValueHelp.openValueHelp(oEvent);
 		},
+
 		onValueHelpOkPress: function (oEvent) {
 			var aTokens = oEvent.getParameter("tokens");
 			this._oMultiInput.setTokens(aTokens);

@@ -6,10 +6,10 @@
 			<Toolbar>
 				<Title id="Ttitle" text="Retail Pricing (9)"/>
 				<ToolbarSpacer/>
-				<!--<Button id="BCopy" icon="sap-icon://copy" text="Copy" type="Transparent" visible="false"/>-->
-				<Button id="Tfilter" icon="sap-icon://clear-filter" tooltip="Clear all filters" press="clearAllFilters" visible="false"/>
-				<Button id="Treset" icon="sap-icon://synchronize" tooltip="Synchronize Data" press="onSync" width="auto" visible="false"/>
-				<Button id="Tcreate" icon="sap-icon://create-form" tooltip="Add new rows" press="onAddRows" visible="false"></Button>
+				<Button id="Tcreate" icon="sap-icon://add" tooltip="Add new rows" press="onAddRows" visible="false"></Button>				
+				<Button id="Tfilter" icon="sap-icon://less" tooltip="Delete" visible="false" press="onDeletePress"/>    <!--press="clearAllFilters"-->
+				<Button id="Treset" icon="sap-icon://synchronize" tooltip="Synchronize Data" press="onSync" width="auto" visible="false"/>				
+				
 			</Toolbar>
 		</table:toolbar>
 		<table:rowSettingsTemplate>
@@ -21,7 +21,7 @@
 				<table:template>
 					<HBox>
 						<core:Icon src="sap-icon://color-fill" class="size1 sapUiTinyMarginTop sapUiTinyMarginEnd" color="{Color}" visible="true"></core:Icon>
-						<Input value="{Material}" editable="false"/>
+						<Input value="{Material}" editable="{appControl>/FilterInput/Edit}" submit="onMaterialInput"/>
 						<!--<Text text="{Material}" wrapping="false"/>-->
 					</HBox>
 				</table:template>
@@ -29,7 +29,7 @@
 			<table:Column name="UPC" width="8rem" sortProperty="UPC" filterProperty="UPC" tooltip="UPC">
 				<Label text="UPC"/>
 				<table:template>
-					<Input value="{UPC}" editable="false"/>
+					<Input value="{UPC}" editable="{appControl>/FilterInput/Edit}"/>
 					<!--<Text text="{LocationCode}" wrapping="false"/>-->
 				</table:template>
 			</table:Column>
@@ -40,7 +40,7 @@
 			<!--<Text text="{Vendor}" wrapping="false"/>-->
 			<!--	</table:template>-->
 			<!--</table:Column>-->
-			<table:Column name="Description" width="15rem" sortProperty="Description" filterProperty="Description" tooltip="Description">
+			<table:Column name="Description" sortProperty="Description" filterProperty="Description" tooltip="Description">
 				<Label text="Description"/>
 				<table:template>
 					<Text text="{Description}" wrapping="false"/>
@@ -58,68 +58,78 @@
 			<!--		<DatePicker value="{valid_to}" valueFormat="MM/dd/yyyy" editable="false"></DatePicker>-->
 			<!--	</table:template>-->
 			<!--</table:Column>-->
-			<table:Column name="Last_Cost" width="5rem" tooltip="Last Cost">
+			<table:Column name="Last_Cost" width="8rem" tooltip="Last Cost" hAlign="Right">
 				<Label text="Last Unit Cost" wrapping="true"/>
 				<table:template>
 					<Text text="{Last_Cost}" wrapping="false"/>
 				</table:template>
 			</table:Column>
-			<table:Column name="Allowance" width="4rem" tooltip="Allowance">
+			<table:Column name="Allowance" width="8rem" tooltip="Allowance" hAlign="Right">
 				<Label text="Allowance" wrapping="true" />
 				<table:template>
 					<Text text="{Allowance}" wrapping="false"/>
 				</table:template>
 			</table:Column>
-			<table:Column name="curr_retail" width="6rem" tooltip="Current Retail">
+			<table:Column name="curr_retail" width="8rem" tooltip="Current Retail" hAlign="Right" visible="{=((${query>/Mode} === '01') ? false : true)}">
 				<Label text="Current Retail" wrapping="true"/>
 				<table:template>
-					<Text text="{Price}" wrapping="false"/>
+					<Text text="{Curr_Price}" wrapping="false"/>
 				</table:template>
 			</table:Column>
-			<table:Column name="curr_gp" width="6rem" tooltip="Current GP">
+			<table:Column name="curr_gp" width="8rem" tooltip="Current GP" hAlign="Right" visible="{=((${query>/Mode} === '01') ? false : true)}">
 				<Label text="Current GM %" wrapping="true"/>
 				<table:template>
 					<Text text="{Margin}" wrapping="false"/>
 				</table:template>
 			</table:Column>
-			<table:Column name="Price" width="8rem" tooltip="Price">
+			<table:Column name="Price" width="8rem" tooltip="Price" hAlign="Center">
 				<Label text="New Retail"/>
 				<table:template>
-					<HBox>
-						<Input value="{Price}" width="4rem" editable="false" liveChange="livecalculate"/>
-						<Button icon="sap-icon://reset" class="size1 sapUiTinyMarginBegin" press="onreset"/>
+					<HBox >
+						<Input value="{
+							parts: [
+								{path: 'Price'},
+								{path: 'appControl>/Currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {showMeasure: false}
+						}" 
+						editable="{appControl>/FilterInput/Edit}" 
+						textAlign = "Right"
+						liveChange="livecalculate"/>
+						<Button icon="sap-icon://reset" class="size1 sapUiTinyMarginBegin" press="onreset" visible="{=((${query>/Mode} === '01') ? false : true)}" width="2rem"/>
 					</HBox>
 				</table:template>
 			</table:Column>
-			<table:Column name="new_gp" width="6rem" tooltip="New GP">
+			<table:Column name="new_gp" width="8rem" tooltip="New GP" hAlign="Right">
 				<Label text="New GM %" wrapping="true"/>
 				<table:template>
 					<Text text="{allow}" wrapping="false"/>
 				</table:template>
 			</table:Column>
-			<table:Column name="new_allow" width="6rem" tooltip="New GM % with Allowance">
+			<table:Column name="new_allow" width="9rem" tooltip="New GM % with Allowance" hAlign="Right">
 				<Label text="New GM % with Allowance" wrapping="true"/>
 				<table:template>
 					<Text text="{new_allow}" wrapping="false"/>
 				</table:template>
 			</table:Column>
-			<table:Column name="Unit_sell" width="6rem" tooltip="Unit Sell" visible="false">
+			<table:Column name="Unit_sell" width="8rem" tooltip="Unit Sell" visible="false" >
 				<Label text="Unit Sell"/>
 				<table:template>
 					<Text text="{Unit_sell}" wrapping="false"/>
 				</table:template>
 			</table:Column>
-			<table:Column name="Multiplier" width="6rem" tooltip="Multiplier" visible="false">
+			<table:Column name="Multiplier" width="8rem" tooltip="Multiplier" visible="false">
 				<Label text="Multiplier"/>
 				<table:template>
 					<Text text="{Multiplier}" wrapping="false"/>
 				</table:template>
 			</table:Column>
 		</table:columns>
-		<table:rowActionTemplate>
+<!--		<table:rowActionTemplate>
 			<table:RowAction>
 				<table:RowActionItem type="Delete" text="Delete" press="onDeletePress"></table:RowActionItem>
 			</table:RowAction>
-		</table:rowActionTemplate>
+		</table:rowActionTemplate>-->
 	</table:Table>
 </core:FragmentDefinition>

@@ -13,7 +13,7 @@
 			descriptionKey="Name"
 	>
 		<filterBar>
-			<fb:FilterBar advancedMode="true" search=".onFilterBarWithSuggestionsSearch" isRunningInValueHelpDialog="true">
+			<fb:FilterBar advancedMode="true" search=".onFilterBarWithSuggestionsSearch" >
 				<fb:filterGroupItems>
 					<fb:FilterGroupItem
 							groupName="__$INTERNAL$"

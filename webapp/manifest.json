@@ -78,8 +78,7 @@
 				"async": true,
 				"viewPath": "com.ingles.retail_pricing.Retail_Pricing.view",
 				"controlId": "app",
-				"transition": "slide",
-				"bypassed": {}
+				"transition": "slide"
 			},
 			"routes": [
 				{

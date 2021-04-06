@@ -9,9 +9,9 @@ sap.ui.define([
 			this.oRouter.attachRouteMatched(this.onRouteMatched, this);
 			this.oRouter.attachBeforeRouteMatched(this.onBeforeRouteMatched, this);
 
-			this.oRouter.navTo("notFound", {
-				layout: "OneColumn"
-			},true);
+			// this.oRouter.navTo("notFound", {
+			// 	layout: "OneColumn"
+			// },true);
 		},
 
 		onBeforeRouteMatched: function (oEvent) {
@@ -31,10 +31,19 @@ sap.ui.define([
 		},
 
 		onRouteMatched: function (oEvent) {
-			var sRouteName = oEvent.getParameter("name"),
-				oArguments = oEvent.getParameter("arguments");
+			var sRouteName = oEvent.getParameter("name");
+			// oArguments = oEvent.getParameter("arguments");
 
-			this._updateUIElements();
+			var oModel = this.getOwnerComponent().getModel();
+			if (oModel.getJSON() === "{}") {
+				this.oRouter.navTo("notFound", {
+					layout: "OneColumn"
+				}, true);
+			} else {
+				var oUIState = this.getOwnerComponent().getHelper().getCurrentUIState();
+				oModel.setData(oUIState);
+			}
+			//this._updateUIElements();
 
 			// Save the current route name
 			this.currentRouteName = sRouteName;
@@ -66,6 +75,7 @@ sap.ui.define([
 		onExit: function () {
 			this.oRouter.detachRouteMatched(this.onRouteMatched, this);
 			this.oRouter.detachBeforeRouteMatched(this.onBeforeRouteMatched, this);
+			this.getView().byId("app").destroy();
 		}
 	});
 });
