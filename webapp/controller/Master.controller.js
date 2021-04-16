@@ -12,9 +12,10 @@ sap.ui.define([
 	"sap/m/Label",
 	"sap/m/SearchField",
 	"sap/m/Token",
-	"com/ingles/retail_pricing/Retail_Pricing/controller/ValueHelper"
+	"com/ingles/retail_pricing/Retail_Pricing/controller/ValueHelper",
+	"sap/m/MessageToast"
 ], function (JSONModel, Controller, Filter, FilterOperator, Sorter, MessageBox, UriParameters, compLibrary, typeString, ColumnListItem,
-	Label, SearchField, Token, ValueHelper) {
+	Label, SearchField, Token, ValueHelper, MessageToast) {
 	"use strict";
 
 	return Controller.extend("com.ingles.retail_pricing.Retail_Pricing.controller.Master", {
@@ -22,8 +23,21 @@ sap.ui.define([
 			this.oRouter = this.getOwnerComponent().getRouter();
 			this._bDescendingSort = false;
 			this._oMultiInput = this.getView().byId("VendorInput");
+			this._oMultiInput.addValidator(function (args) {
+				var vendorList = this.getOwnerComponent().getModel("MasterDataModel").getData().vendors;
+				var vendorData = vendorList.filter(function (obj) {
+					return obj.vendor === args.text;
+				});
+				if (vendorData.length > 0) {
+					return new sap.m.Token({
+						key: args.text,
+						text: vendorData[0].vendorName
+					});
+				} else return null;
+
+			}.bind(this));
 			// this._oMultiInput.addValidator(this.tokenUpdate);
-			this._oMultiInput.setTokens(this._getDefaultTokens());
+			// this._oMultiInput.setTokens(this._getDefaultTokens());
 			var scPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/columnsModel.json");
 			this.oColModel = new JSONModel(scPath);
 			var sPPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/products.json");
@@ -41,19 +55,19 @@ sap.ui.define([
 			var oHashChanger = new sap.ui.core.routing.HashChanger();
 			var query = oHashChanger.getHash();
 			var value = this.getAllUrlParams(query);
+			var queryModel = this.getOwnerComponent().getModel("query");
 
 			if (value.pricestrategy !== undefined) {
-				this.getOwnerComponent().getModel("query").setProperty("/PriceStrategy", decodeURIComponent(value.pricestrategy));
-				this.getOwnerComponent().getModel("query").setProperty("/PriceType", decodeURIComponent(value.pricetype));
-
+				queryModel.setProperty("/PriceStrategy", decodeURIComponent(value.pricestrategy));
+				queryModel.setProperty("/PriceType", decodeURIComponent(value.pricetype));
 				if (decodeURIComponent(value.pricetype) === "20" & decodeURIComponent(value.pricestrategy) === "001") {
-					this.getOwnerComponent().getModel("query").setProperty("/filename", "closeoutdata.json");
+					queryModel.setProperty("/filename", "closeoutdata.json");
 				} else if (decodeURIComponent(value.pricetype) === "01" & decodeURIComponent(value.pricestrategy) === "001") {
-					this.getOwnerComponent().getModel("query").setProperty("/filename", "data.json");
+					queryModel.setProperty("/filename", "data.json");
 				} else if (decodeURIComponent(value.pricetype) === "01" & decodeURIComponent(value.pricestrategy) === "213") {
-					this.getOwnerComponent().getModel("query").setProperty("/filename", "dsdregular.json");
+					queryModel.setProperty("/filename", "dsdregular.json");
 				} else if (decodeURIComponent(value.pricetype) === "20" & decodeURIComponent(value.pricestrategy) === "201") {
-					this.getOwnerComponent().getModel("query").setProperty("/filename", "dsdclose.json");
+					queryModel.setProperty("/filename", "dsdclose.json");
 				}
 			}
 
@@ -70,7 +84,7 @@ sap.ui.define([
 
 		// 	return null;
 		// },
-		
+
 		tokenUpdate: function (oEvent, oPath) {
 			var sType = oEvent.getParameter("type"),
 				aAddedTokens = oEvent.getParameter("addedTokens"),
@@ -102,8 +116,8 @@ sap.ui.define([
 
 			oModel.setProperty(oPath, aContexts);
 
-		},		
-		
+		},
+
 		_getDefaultTokens: function () {
 			var oToken1 = new Token({
 				key: "DC10",
@@ -123,24 +137,72 @@ sap.ui.define([
 			}, true);
 		},
 		onSearch: function (oEvent) {
-			if (this.getOwnerComponent().getModel("query").getProperty("/PriceStrategy") !== "") {
+			var appControlModel = this.getOwnerComponent().getModel("appControl");
+			var queryModel = this.getOwnerComponent().getModel("query");
+			var mode = "";
+			if (queryModel.getProperty("/PriceStrategy") !== "") {
 
-				this.getOwnerComponent().getModel("query").setProperty("/PriceStrategy", this.getView().byId("Strategy").getSelectedItem().getText());
-				this.getOwnerComponent().getModel("query").setProperty("/PriceType", this.getView().byId("Type").getSelectedItem().getText());
+				queryModel.setProperty("/PriceStrategy", this.getView().byId("Strategy").getSelectedItem().getText());
+				appControlModel.setProperty("/FilterInput/PriceStrategy", this.getView().byId("Strategy").getSelectedItem().getKey());
+
+				queryModel.setProperty("/PriceType", this.getView().byId("Type").getSelectedItem().getText());
+				appControlModel.setProperty("/FilterInput/PriceType", this.getView().byId("Type").getSelectedItem().getKey());
 			}
-			this.getOwnerComponent().getModel("query").setProperty("/PriceFamily", this.getView().byId("pricfam").getSelectedItem());
-			this.getOwnerComponent().getModel("query").setProperty("/CostFamily", this.getView().byId("costfam").getSelectedItem());
+			queryModel.setProperty("/PriceFamily", this.getView().byId("pricfam").getSelectedItem());
+			queryModel.setProperty("/CostFamily", this.getView().byId("costfam").getSelectedItem());
 
 			if (this.getView().byId("RB1").getSelected() === true) {
-				this.getOwnerComponent().getModel("query").setProperty("/Mode", "01");
+				mode = "01";
 			} else {
-				this.getOwnerComponent().getModel("query").setProperty("/Mode", "02");
+				mode = "02";
 			}
 
-			this.oRouter.navTo("detail", {
-				layout: "MidColumnFullScreen",
-				product: "95"
-			}, true);
+			var displayVendorID = "",
+				displayVendorName = "",
+				displayVendorType = "",
+				multipleVendors = false,
+				selectedVendors = [],
+				allvendors = this.getOwnerComponent().getModel("MasterDataModel").getProperty("/vendors"),
+				vendTokens = this.getView().byId("VendorInput").getTokens();
+			for (var i = 0; i < vendTokens.length; i++) {
+				for (var j = 0; j < allvendors.length; j++) {
+					if (allvendors[j].vendor === vendTokens[i].getKey()) {
+						selectedVendors.push(allvendors[j]);
+						if (displayVendorType !== "" && displayVendorType !== allvendors[j].vType)
+							displayVendorType = "MULTIPLE";
+						else displayVendorType = allvendors[j].vType;
+					}
+				}
+			}
+
+			if (selectedVendors.length > 1) {
+				multipleVendors = true;
+			} else if (selectedVendors.length === 1) {
+				displayVendorID = selectedVendors[0].vendor;
+				displayVendorName = selectedVendors[0].vendorName;
+				multipleVendors = false;
+			}
+
+			displayVendorType = (displayVendorType === "WH") ? "W / H" : displayVendorType;
+
+			queryModel.setProperty("/Mode", mode);
+			queryModel.setProperty("/vendor", displayVendorID);
+			queryModel.setProperty("/vendorName", displayVendorName);
+			queryModel.setProperty("/vendorType", displayVendorType);
+			queryModel.setProperty("/multipleVendors", multipleVendors);
+
+			if (mode === "01" && multipleVendors) {
+				MessageToast.show("Only one Vendor allowed for Create mode");
+				return;
+			} else if (displayVendorType === "MULTIPLE") {
+				MessageToast.show("Select either WH or DSD vendors");
+				return;
+			} else {
+				this.oRouter.navTo("detail", {
+					layout: "MidColumnFullScreen",
+					product: "95"
+				}, true);
+			}
 		},
 
 		onAdd: function (oEvent) {

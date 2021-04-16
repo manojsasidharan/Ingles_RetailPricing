@@ -33,11 +33,8 @@ sap.ui.define([
 						label: "Vendor Name",
 						template: "vendorName"
 					}, {
-						label: "Sales Person",
-						template: "salesPerson"
-					}, {
-						label: "Telephone",
-						template: "telephone"
+						label: "Vendor Type",
+						template: "vType"
 					}],
 					modelName: "MasterDataModel",
 					modelPath: "/vendors",

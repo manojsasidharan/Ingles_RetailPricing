@@ -18,11 +18,6 @@
 		<f:content>
 			<fb:FilterBar considerGroupTitle="true" id="filterbar" search="onSearch" useToolbar="false" showGoButton="true">
 				<fb:filterGroupItems groupTitle="Group1">
-					<fb:FilterGroupItem groupName="G1" name="A" label="Pricing Family" visibleInAdvancedArea="true">
-						<fb:control>
-							<MultiInput value=""/>
-						</fb:control>
-					</fb:FilterGroupItem>
 					<fb:FilterGroupItem groupName="G1" name="B" label="Vendor" visibleInAdvancedArea="true">
 						<fb:control>
 							<MultiInput name="VendorInput" id="VendorInput" valueHelpRequest=".onVendorValueHelp"
@@ -30,8 +25,6 @@
 							</MultiInput>
 						</fb:control>
 					</fb:FilterGroupItem>
-				</fb:filterGroupItems>
-				<fb:filterGroupItems>
 					<fb:FilterGroupItem groupName="G1" name="C" label="Material" visibleInAdvancedArea="true">
 						<fb:control>
 							<MultiInput/>
@@ -124,7 +117,6 @@
 								<core:Item key="01" text="01 - Regular"/>
 								<core:Item key="20" text="20 - Advantage"/>
 								<core:Item key="25" text="25 - Price Freeze dept 0005 only"/>
-								<core:Item key="30" text="30 - AD/Sale"/>
 							</Select>
 						</fb:control>
 					</fb:FilterGroupItem>

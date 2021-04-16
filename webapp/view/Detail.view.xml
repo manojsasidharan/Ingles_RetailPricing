@@ -52,15 +52,15 @@
 						
 							<m:HBox class="sapUiLargeMarginBegin">
 								<m:Label text="Vendor Type:" design="Bold" wrapping="true" />
-								<m:ObjectStatus text=" W / H" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
+								<m:ObjectStatus text="{query>/vendorType}" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
 							</m:HBox>
 							<m:HBox class="sapUiLargeMarginBegin">
 								<m:Label text="Vendor ID:" design="Bold" wrapping="true" />
-								<m:ObjectStatus text=" DC10" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
+								<m:ObjectStatus text="{= ${query>/multipleVendors} ? '&lt;Multiple&gt;': ${query>/vendor}}" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
 							</m:HBox>
 							<m:HBox class="sapUiLargeMarginBegin">
 								<m:Label text="Vendor Name:" design="Bold" wrapping="true" />
-								<m:ObjectStatus text=" Ingles DC" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
+								<m:ObjectStatus text="{= ${query>/multipleVendors} ? '&lt;Multiple&gt;': ${query>/vendorName}}" class="sapUiSmallMarginBegin  sapUiTinyMarginBottom"/>
 							</m:HBox>
 						</layout:HorizontalLayout>
 						<layout:HorizontalLayout class="sapUiSmallMarginTop">

@@ -1,5 +1,7 @@
 {
 	"Data": [{
+		"Family": "",
+		"IsParent": false,
 		"LocationCode": "",
 		"Material": "",
 		"Vendor": "",
@@ -13,6 +15,8 @@
 		"Unit_sell": "",
 		"Multiplier": ""
 	}, {
+		"Family": "",
+		"IsParent": false,
 		"LocationCode": "",
 		"Material": "",
 		"Vendor": "",
@@ -26,6 +30,8 @@
 		"Unit_sell": "",
 		"Multiplier": ""
 	}, {
+		"Family": "",
+		"IsParent": false,
 		"LocationCode": "",
 		"Material": "",
 		"Vendor": "",
@@ -39,6 +45,8 @@
 		"Unit_sell": "",
 		"Multiplier": ""
 	}, {
+		"Family": "",
+		"IsParent": false,
 		"LocationCode": "",
 		"Material": "",
 		"Vendor": "",
@@ -52,6 +60,8 @@
 		"Unit_sell": "",
 		"Multiplier": ""
 	}, {
+		"Family": "",
+		"IsParent": false,
 		"LocationCode": "",
 		"Material": "",
 		"Vendor": "",
@@ -65,6 +75,8 @@
 		"Unit_sell": "",
 		"Multiplier": ""
 	}, {
+		"Family": "",
+		"IsParent": false,
 		"LocationCode": "",
 		"Material": "",
 		"Vendor": "",
@@ -78,6 +90,8 @@
 		"Unit_sell": "",
 		"Multiplier": ""
 	}, {
+		"Family": "",
+		"IsParent": false,
 		"LocationCode": "",
 		"Material": "",
 		"Vendor": "",
@@ -91,6 +105,8 @@
 		"Unit_sell": "",
 		"Multiplier": ""
 	}, {
+		"Family": "",
+		"IsParent": false,
 		"LocationCode": "",
 		"Material": "",
 		"Vendor": "",
@@ -104,6 +120,8 @@
 		"Unit_sell": "",
 		"Multiplier": ""
 	}, {
+		"Family": "",
+		"IsParent": false,
 		"LocationCode": "",
 		"Material": "",
 		"Vendor": "",

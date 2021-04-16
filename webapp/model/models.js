@@ -24,7 +24,11 @@ sap.ui.define([
 			var queryData = {
 				"PriceStrategy": "",
 				"PriceType": "",
-				"FromDate": ""
+				"FromDate": "",
+				"vendor": "",
+				"vendorName": "",
+				"vendorType": "",
+				"multipleVendors": false
 			};
 			queryData.FromDate = this.getToday();
 			var vModel = new JSONModel(queryData);
@@ -36,7 +40,9 @@ sap.ui.define([
 			var appData = {
 				Currency: "USD",
 				FilterInput: {
-					Vendor: "",
+					Vendor: [],
+					PriceType: "",
+					PriceStrategy: "",
 					Mode: 0,
 					Edit: false
 				}

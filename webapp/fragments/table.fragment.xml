@@ -20,7 +20,9 @@
 				<Label text="Material"/>
 				<table:template>
 					<HBox>
-						<core:Icon src="sap-icon://color-fill" class="size1 sapUiTinyMarginTop sapUiTinyMarginEnd" color="{Color}" visible="true"></core:Icon>
+						<core:Icon src="sap-icon://color-fill" class="size1 sapUiTinyMarginTop sapUiTinyMarginEnd" 
+						color="{ parts: [{path: 'IsParent'}, {path: 'Family'}, {path: 'Material'}], formatter: '.colorCode' }" 
+						visible="true"></core:Icon>
 						<Input value="{Material}" editable="{appControl>/FilterInput/Edit}" submit="onMaterialInput"/>
 						<!--<Text text="{Material}" wrapping="false"/>-->
 					</HBox>
@@ -46,6 +48,18 @@
 					<Text text="{Description}" wrapping="false"/>
 				</table:template>
 			</table:Column>
+			<table:Column name="Vendor" width="5rem" tooltip="Vendor #" hAlign="Left" visible="{= ((${query>/Mode} === '01' || ${query>/multipleVendors} === false ) ? false : true)}">
+				<Label text="Vendor #" wrapping="true"/>
+				<table:template>
+					<Text text="{Vendor}" wrapping="false"/>
+				</table:template>
+			</table:Column>	
+			<table:Column name="VendorName" width="8rem" tooltip="Vendor Name" hAlign="Left" visible="{= ((${query>/Mode} === '01' || ${query>/multipleVendors} === false ) ? false : true)}">
+				<Label text="Vendor Name" wrapping="true"/>
+				<table:template>
+					<Text text="{VendorName}" wrapping="false"/>
+				</table:template>
+			</table:Column>				
 			<!--<table:Column name="valid_from" width="11rem"  tooltip="Valid From">-->
 			<!--	<Label text="Valid From"/>-->
 			<!--	<table:template>-->

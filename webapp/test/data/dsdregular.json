@@ -13,12 +13,14 @@
 		"Unit_sell": "9.47",
 		"Multiplier": "1",
 		"UPC": "7231141213",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "213",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3018788",
-		"Vendor": "909991",
+		"Vendor": "634",
 		"Description": "HIGH LIFE SUITCASE",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -29,8 +31,10 @@
 		"Unit_sell": "2.25",
 		"Multiplier": "2",
 		"UPC": "3410001306",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "213",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3019814",
@@ -45,12 +49,14 @@
 		"Unit_sell": "2.5",
 		"Multiplier": "2",
 		"UPC": "3410000884",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "213",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3022631",
-		"Vendor": "909991",
+		"Vendor": "634",
 		"Description": "LEINENKUGEL SUMMER SHANDY 6PK BTLS",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -61,12 +67,14 @@
 		"Unit_sell": "2.25",
 		"Multiplier": "2",
 		"UPC": "3410051605",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "213",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3025228",
-		"Vendor": "909991",
+		"Vendor": "634",
 		"Description": "MILLER LITE CANS",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -77,8 +85,10 @@
 		"Unit_sell": "2.5",
 		"Multiplier": "2",
 		"UPC": "3410000355",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "213",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3025233",
@@ -93,8 +103,10 @@
 		"Unit_sell": "2.5",
 		"Multiplier": "2",
 		"UPC": "3410057663",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "213",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3025303",
@@ -109,12 +121,14 @@
 		"Unit_sell": "16.87",
 		"Multiplier": "2",
 		"UPC": "3410000008",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "213",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3025313",
-		"Vendor": "800371",
+		"Vendor": "634",
 		"Description": "MILLER HIGH LIFE PONY 6PK",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -125,8 +139,10 @@
 		"Unit_sell": "19.97",
 		"Multiplier": "1",
 		"UPC": "3410001641",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "213",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3025314",
@@ -141,8 +157,10 @@
 		"Unit_sell": "4.17",
 		"Multiplier": "1",
 		"UPC": "3410057238",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "213",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}],
 	"items": [],
 	"uploadState": "Complete",

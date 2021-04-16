@@ -134,19 +134,46 @@ sap.ui.define([
 				var selection = this.getOwnerComponent().getModel("query").getProperty("/PriceFamily").getKey();
 			}
 			var mode = this.getOwnerComponent().getModel("query").getProperty("/Mode");
-			var file = this.getOwnerComponent().getModel("query").getProperty("/filename");
+			var file = "AllData.json"; //this.getOwnerComponent().getModel("query").getProperty("/filename");
+			var appControlModel = this.getOwnerComponent().getModel("appControl");
 			if (mode === "02") {
-				this.getView().getModel("appControl").setProperty("/FilterInput/Edit", false);
+				appControlModel.setProperty("/FilterInput/Edit", false);
 				var conditionTable = this.getView().byId("Table");
 				var sPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/" + file);
 				var attModel = new JSONModel(sPath);
-				// attModel.setDefaultBindingMode("OneWay");
-				this.getView().setModel(attModel);
-				this.getView().byId("Ttitle").setText("Retail Pricing (" + 9 + ")");
-				conditionTable.bindRows("/Data");
-				attModel.refresh();
-				this.getView().byId("Table").rerender();
-				this.onfirstdisplay();
+				attModel.attachRequestCompleted(function () {
+					var dataArray = attModel.getData().Data;
+					var filteredArray = [];
+					var vendTokens = appControlModel.getProperty("/FilterInput/Vendor");
+					var priceType = appControlModel.getProperty("/FilterInput/PriceType"),
+						priceStrategy = appControlModel.getProperty("/FilterInput/PriceStrategy");
+
+					for (var i = 0; i < dataArray.length; i++) {
+
+						if (((priceType !== "" && dataArray[i].pricetype === priceType) || priceType === "") &&
+							((priceStrategy !== "" && dataArray[i].pricestrategy === priceStrategy) || priceStrategy === "")) {
+							if (vendTokens.length === 0)
+								filteredArray.push(dataArray[i]);
+							else {
+								for (var j = 0; j < vendTokens.length; j++) {
+									if (dataArray[i].Vendor === vendTokens[j].key) {
+										filteredArray.push(dataArray[i]);
+										break;
+									}
+								}
+							}
+						}
+					}
+					this.getView().setModel(new JSONModel({
+						Data: filteredArray
+					}));
+					conditionTable.bindRows("/Data");
+					this.getView().byId("Ttitle").setText("Retail Pricing (" + filteredArray.length + ")");
+					this.onfirstdisplay();
+					// this.calculate(true, "", "");
+
+				}.bind(this));
+
 			} else {
 				this.getView().getModel("appControl").setProperty("/FilterInput/Edit", true);
 				conditionTable = this.getView().byId("Table");
@@ -338,8 +365,8 @@ sap.ui.define([
 		onreset: function (oEvent) {
 			var oModel = this.getView().getModel();
 			var path = oEvent.getSource().getParent().getParent().getBindingContext().getPath();
-			var oldValue = oModel.getProperty( path + "/Curr_Price");
-			oModel.setProperty( path + "/Price", oldValue );
+			var oldValue = oModel.getProperty(path + "/Curr_Price");
+			oModel.setProperty(path + "/Price", oldValue);
 
 			var table = this.getView().byId("Table");
 			var oRow = oEvent.getSource().getParent().getParent().getBindingContext().getPath().slice(6);
@@ -728,10 +755,21 @@ sap.ui.define([
 			this.byId("attachmentTitle").setText(this.getAttachmentTitleText());
 		},
 
+		colorCode: function (isParent, Family, Material) {
+			if (Family !== "") {
+				if (isParent) return "#0d6733"; //Dark Green
+				else return "#16ab54"; //Light Green
+			} else if (Material !== "" && Material !== undefined)
+				return "#72b5f8"; //Blue
+			else return "";
+		},
+
 		onMaterialInput: function (oEvent) {
 			var matnr = oEvent.getSource().getValue();
 			var sPath = oEvent.getSource().getBindingContext().getPath();
 			var data = [{
+				Family: "",
+				IsParent: false,
 				LocationCode: "1005",
 				Material: "22220",
 				Vendor: "909991",
@@ -746,6 +784,8 @@ sap.ui.define([
 				Color: "#40916C",
 				Allowance: "0.27"
 			}, {
+				Family: "",
+				IsParent: false,				
 				LocationCode: "1005",
 				Material: "22233",
 				Vendor: "909991",
@@ -760,6 +800,8 @@ sap.ui.define([
 				Color: "#40916C",
 				Allowance: "0.00"
 			}, {
+				Family: "",
+				IsParent: false,				
 				LocationCode: "1005",
 				Material: "22446",
 				Vendor: "909991",

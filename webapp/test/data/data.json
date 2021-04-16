@@ -2,7 +2,7 @@
 	"Data": [{
 		"LocationCode": "1005",
 		"Material": "22220",
-		"Vendor": "909991",
+		"Vendor": "390",
 		"Description": "JFG MAYONNAISE",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -13,12 +13,14 @@
 		"Unit_sell": "3.28",
 		"Multiplier": "1",
 		"UPC": "4141030751",
-		"Color": "#40916C",
-		"Allowance" : "0.27"
+		"pricestrategy": "001",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.27"
 	}, {
 		"LocationCode": "1005",
 		"Material": "22233",
-		"Vendor": "909991",
+		"Vendor": "390",
 		"Description": "JFG SALAD DRESSING",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -29,8 +31,10 @@
 		"Unit_sell": "3.28",
 		"Multiplier": "1",
 		"UPC": "4141030753",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "001",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "22446",
@@ -45,8 +49,10 @@
 		"Unit_sell": "3.98",
 		"Multiplier": "1",
 		"UPC": "7020031001",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "001",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "22447",
@@ -55,14 +61,16 @@
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
 		"Last_Cost": "2.52",
-"Curr_Price": "3.98",		
+		"Curr_Price": "3.98",
 		"Price": "3.98",
 		"Margin": "30.15",
 		"Unit_sell": "3.98",
 		"Multiplier": "1",
 		"UPC": "7020011001",
-		"Color": "#40916C",
-		"Allowance" : "1.16"
+		"pricestrategy": "001",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "1.16"
 	}, {
 		"LocationCode": "1005",
 		"Material": "22589",
@@ -71,14 +79,16 @@
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
 		"Last_Cost": "5.28",
-		"Curr_Price": "5.98",		
+		"Curr_Price": "5.98",
 		"Price": "5.98",
 		"Margin": "11.71",
 		"Unit_sell": "5.28",
 		"Multiplier": "1",
 		"UPC": "2100002675",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "001",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "22591",
@@ -93,12 +103,14 @@
 		"Unit_sell": "5.28",
 		"Multiplier": "1",
 		"UPC": "2100002631",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "001",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "96608",
-		"Vendor": "909991",
+		"Vendor": "390",
 		"Description": "BLUE PLATE LIGHT MAYO",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -109,8 +121,10 @@
 		"Unit_sell": "3.98",
 		"Multiplier": "1",
 		"UPC": "4790050733",
-		"Color": "#40916C",
-		"Allowance" : "0.54"
+		"pricestrategy": "001",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.54"
 	}, {
 		"LocationCode": "1005",
 		"Material": "97887",
@@ -125,8 +139,10 @@
 		"Unit_sell": "2.48",
 		"Multiplier": "1",
 		"UPC": "8685401174",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "001",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "97913",
@@ -141,8 +157,10 @@
 		"Unit_sell": "2.48",
 		"Multiplier": "1",
 		"UPC": "8685401176",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "001",
+		"pricetype": "01",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}],
 	"items": [],
 	"uploadState": "Complete",

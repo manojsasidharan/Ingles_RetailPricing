@@ -2,7 +2,7 @@
 	"Data": [{
 		"LocationCode": "1005",
 		"Material": "3043193",
-		"Vendor": "909991",
+		"Vendor": "203",
 		"Description": "XDK-SPCTRM SOY MAYO OG",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -13,12 +13,14 @@
 		"Unit_sell": "4.38",
 		"Multiplier": "1",
 		"UPC": "2250600235",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "201",
+		"pricetype": "20",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3006577",
-		"Vendor": "909991",
+		"Vendor": "203",
 		"Description": "BOB'S RED MILL GF HONEY OAT GRANOLA",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -29,12 +31,14 @@
 		"Unit_sell": "4.18",
 		"Multiplier": "1",
 		"UPC": "3997800364",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "201",
+		"pricetype": "20",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3042839",
-		"Vendor": "909991",
+		"Vendor": "203",
 		"Description": "XDK-PACIFC BROTH ORGANIC CHICK",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -45,12 +49,14 @@
 		"Unit_sell": "3.68",
 		"Multiplier": "1",
 		"UPC": "5260305425",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "201",
+		"pricetype": "20",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3042838",
-		"Vendor": "909991",
+		"Vendor": "203",
 		"Description": "XDK-PACIFC BROTH OG CHKN L/S",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -61,12 +67,14 @@
 		"Unit_sell": "3.68",
 		"Multiplier": "1",
 		"UPC": "5260305445",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "201",
+		"pricetype": "20",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3012149",
-		"Vendor": "909991",
+		"Vendor": "203",
 		"Description": "DARE WATER CRACKERS NATURAL",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -77,12 +85,14 @@
 		"Unit_sell": "2.08",
 		"Multiplier": "1",
 		"UPC": "5565361870",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "201",
+		"pricetype": "20",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3012148",
-		"Vendor": "909991",
+		"Vendor": "203",
 		"Description": "DARE WATER CRACKER PEPPER NATU",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -93,12 +103,14 @@
 		"Unit_sell": "2.08",
 		"Multiplier": "1",
 		"UPC": "5565361880",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "201",
+		"pricetype": "20",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3041359",
-		"Vendor": "909991",
+		"Vendor": "203",
 		"Description": "BUZZ BLOOM SINGLE SERVE ORG HNY",
 		"valid_from": "5/2/2021",
 		"valid_to": "12/31/9999",
@@ -109,8 +121,10 @@
 		"Unit_sell": "4.68",
 		"Multiplier": "1",
 		"UPC": "60627432731",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "201",
+		"pricetype": "20",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3008045",
@@ -125,8 +139,10 @@
 		"Unit_sell": "4.68",
 		"Multiplier": "1",
 		"UPC": "7123870301",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "201",
+		"pricetype": "20",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}, {
 		"LocationCode": "1005",
 		"Material": "3038020",
@@ -141,8 +157,10 @@
 		"Unit_sell": "2.50",
 		"Multiplier": "1",
 		"UPC": "71612312819",
-		"Color": "#40916C",
-		"Allowance" : "0.00"
+		"pricestrategy": "201",
+		"pricetype": "20",
+		"color": "#40916C",
+		"Allowance": "0.00"
 	}],
 	"items": [],
 	"uploadState": "Complete",
