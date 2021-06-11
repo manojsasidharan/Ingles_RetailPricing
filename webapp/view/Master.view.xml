@@ -1,4 +1,4 @@
-<mvc:View displayBlock="true" controllerName="com.ingles.retail_pricing.Retail_Pricing.controller.Master" height="100%" xmlns="sap.m"
+<mvc:View displayBlock="true" controllerName="Ingles.Mock.Retail_Pricing.controller.Master" height="100%" xmlns="sap.m"
 	xmlns:f="sap.f" xmlns:vm="sap.ui.comp.variants" xmlns:fb="sap.ui.comp.filterbar" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
 	<f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false">
 		<!-- DynamicPage Title -->

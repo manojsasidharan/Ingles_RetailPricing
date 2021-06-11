@@ -12,13 +12,13 @@ sap.ui.define([
 	"sap/m/Label",
 	"sap/m/SearchField",
 	"sap/m/Token",
-	"com/ingles/retail_pricing/Retail_Pricing/controller/ValueHelper",
+	"Ingles/Mock/Retail_Pricing/controller/ValueHelper",
 	"sap/m/MessageToast"
 ], function (JSONModel, Controller, Filter, FilterOperator, Sorter, MessageBox, UriParameters, compLibrary, typeString, ColumnListItem,
 	Label, SearchField, Token, ValueHelper, MessageToast) {
 	"use strict";
 
-	return Controller.extend("com.ingles.retail_pricing.Retail_Pricing.controller.Master", {
+	return Controller.extend("Ingles.Mock.Retail_Pricing.controller.Master", {
 		onInit: function () {
 			this.oRouter = this.getOwnerComponent().getRouter();
 			this._bDescendingSort = false;
@@ -38,9 +38,9 @@ sap.ui.define([
 			}.bind(this));
 			// this._oMultiInput.addValidator(this.tokenUpdate);
 			// this._oMultiInput.setTokens(this._getDefaultTokens());
-			var scPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/columnsModel.json");
+			var scPath = jQuery.sap.getModulePath("Ingles.Mock.Retail_Pricing", "/test/data/columnsModel.json");
 			this.oColModel = new JSONModel(scPath);
-			var sPPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/products.json");
+			var sPPath = jQuery.sap.getModulePath("Ingles.Mock.Retail_Pricing", "/test/data/products.json");
 			this.oProductsModel = new JSONModel(sPPath);
 			this.getView().setModel(this.oProductsModel);
 
@@ -299,7 +299,7 @@ sap.ui.define([
 		// 		showSearchButton: false
 		// 	});
 
-		// 	this._oValueHelpDialog = sap.ui.xmlfragment("com.ingles.retail_pricing.Retail_Pricing.fragments.ValueHelpDialogFilterbar", this);
+		// 	this._oValueHelpDialog = sap.ui.xmlfragment("Ingles.Mock.Retail_Pricing.fragments.ValueHelpDialogFilterbar", this);
 		// 	this.getView().addDependent(this._oValueHelpDialog);
 
 		// 	this._oValueHelpDialog.setRangeKeyFields([{
@@ -422,7 +422,7 @@ sap.ui.define([
 			});
 
 			this._oValueHelpDialogWithSuggestions = sap.ui.xmlfragment(
-				"com.ingles.retail_pricing.Retail_Pricing.fragments.ValueHelpDialogFilterbarWithSuggestions", this);
+				"Ingles.Mock.Retail_Pricing.fragments.ValueHelpDialogFilterbarWithSuggestions", this);
 			this.getView().addDependent(this._oValueHelpDialogWithSuggestions);
 
 			this._oValueHelpDialogWithSuggestions.setRangeKeyFields([{

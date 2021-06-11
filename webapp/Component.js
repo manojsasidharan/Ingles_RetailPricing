@@ -2,7 +2,7 @@ sap.ui.define([
 	"sap/base/util/UriParameters",
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"com/ingles/retail_pricing/Retail_Pricing/model/models",
+	"Ingles/Mock/Retail_Pricing/model/models",
 	"sap/f/library",
 	"sap/f/FlexibleColumnLayoutSemanticHelper",
 	"sap/ui/model/json/JSONModel"
@@ -10,7 +10,7 @@ sap.ui.define([
 	"use strict";
 	var LayoutType = library.LayoutType;
 
-	var Component = UIComponent.extend("com.ingles.retail_pricing.Retail_Pricing.Component", {
+	var Component = UIComponent.extend("Ingles.Mock.Retail_Pricing.Component", {
 
 		metadata: {
 			manifest: "json"

@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="com.ingles.retail_pricing.Retail_Pricing.controller.NotFound"
+	controllerName="Ingles.Mock.Retail_Pricing.controller.NotFound"
 	height="100%"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"

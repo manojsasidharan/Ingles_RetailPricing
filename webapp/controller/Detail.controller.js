@@ -18,7 +18,7 @@ sap.ui.define([
 	UploadCollectionParameter, MessageToast) {
 	"use strict";
 
-	return Controller.extend("com.ingles.retail_pricing.Retail_Pricing.controller.Detail", {
+	return Controller.extend("Ingles.Mock.Retail_Pricing.controller.Detail", {
 		onInit: function () {
 
 			var oExitButton = this.getView().byId("exitFullScreenBtn"),
@@ -100,7 +100,7 @@ sap.ui.define([
 			var file = this.getOwnerComponent().getModel("query").getProperty("/filename");
 			if (mode === "02") {
 				var conditionTable = this.getView().byId("Table");
-				var sPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/" + file);
+				var sPath = jQuery.sap.getModulePath("Ingles.Mock.Retail_Pricing", "/test/data/" + file);
 				var attModel = new JSONModel(sPath);
 				// attModel.setDefaultBindingMode("OneWay");
 				this.getView().setModel(attModel);
@@ -112,7 +112,7 @@ sap.ui.define([
 			} else {
 
 				conditionTable = this.getView().byId("Table");
-				sPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/createdata.json");
+				sPath = jQuery.sap.getModulePath("Ingles.Mock.Retail_Pricing", "/test/data/createdata.json");
 				attModel = new JSONModel(sPath);
 				// attModel.setDefaultBindingMode("OneWay");
 				this.getView().setModel(attModel);
@@ -139,7 +139,7 @@ sap.ui.define([
 			if (mode === "02") {
 				appControlModel.setProperty("/FilterInput/Edit", false);
 				var conditionTable = this.getView().byId("Table");
-				var sPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/" + file);
+				var sPath = jQuery.sap.getModulePath("Ingles.Mock.Retail_Pricing", "/test/data/" + file);
 				var attModel = new JSONModel(sPath);
 				attModel.attachRequestCompleted(function () {
 					var dataArray = attModel.getData().Data;
@@ -177,7 +177,7 @@ sap.ui.define([
 			} else {
 				this.getView().getModel("appControl").setProperty("/FilterInput/Edit", true);
 				conditionTable = this.getView().byId("Table");
-				sPath = jQuery.sap.getModulePath("com.ingles.retail_pricing.Retail_Pricing", "/test/data/createdata.json");
+				sPath = jQuery.sap.getModulePath("Ingles.Mock.Retail_Pricing", "/test/data/createdata.json");
 				attModel = new JSONModel(sPath);
 				attModel.setDefaultBindingMode("OneWay");
 				this.getView().setModel(attModel);
@@ -507,7 +507,7 @@ sap.ui.define([
 
 		},
 		onAddRows: function (oEvent) {
-			this.addRowsDialog = sap.ui.xmlfragment("com.ingles.retail_pricing.Retail_Pricing.fragments.AddRows", this);
+			this.addRowsDialog = sap.ui.xmlfragment("Ingles.Mock.Retail_Pricing.fragments.AddRows", this);
 
 			//this.getOwnerComponent().getModel("addrow").setData("");
 			this.addRowsDialog.setModel(this.getOwnerComponent().getModel("addrow"));

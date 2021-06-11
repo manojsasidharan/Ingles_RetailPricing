@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.ingles.retail_pricing.Retail_Pricing.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+<mvc:View controllerName="Ingles.Mock.Retail_Pricing.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
 	xmlns="sap.m" xmlns:f="sap.f" height="100%">
 	<Shell id="shell" appWidthLimited="false">
 		<f:FlexibleColumnLayout id="app" stateChange="onStateChanged"	layout="{/layout}" backgroundDesign="Translucent"/>

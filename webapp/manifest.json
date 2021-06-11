@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "com.ingles.retail_pricing.Retail_Pricing",
+		"id": "Ingles.Mock.Retail_Pricing",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -33,7 +33,7 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "com.ingles.retail_pricing.Retail_Pricing.view.App",
+			"viewName": "Ingles.Mock.Retail_Pricing.view.App",
 			"type": "XML",
 			"async": true,
 			"id": "App"
@@ -60,7 +60,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.ingles.retail_pricing.Retail_Pricing.i18n.i18n"
+					"bundleName": "Ingles.Mock.Retail_Pricing.i18n.i18n"
 				}
 			}
 		},
@@ -76,7 +76,7 @@
 				"routerClass": "sap.f.routing.Router",
 				"viewType": "XML",
 				"async": true,
-				"viewPath": "com.ingles.retail_pricing.Retail_Pricing.view",
+				"viewPath": "Ingles.Mock.Retail_Pricing.view",
 				"controlId": "app",
 				"transition": "slide"
 			},
@@ -123,7 +123,7 @@
 		}
 	},
 	"sap.platform.abap": {
-		"uri": "/sap/bc/ui5_ui5/sap/zig_retail_pri/webapp",
+		"uri": "/sap/bc/ui5_ui5/sap/zmockretail_pri/webapp",
 		"_version": "1.1.0"
 	}
 }

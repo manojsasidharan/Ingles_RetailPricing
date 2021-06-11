@@ -1,4 +1,4 @@
-<mvc:View displayBlock="true" controllerName="com.ingles.retail_pricing.Retail_Pricing.controller.Detail" height="100%" xmlns="sap.uxap"
+<mvc:View displayBlock="true" controllerName="Ingles.Mock.Retail_Pricing.controller.Detail" height="100%" xmlns="sap.uxap"
 	xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
 	xmlns:core="sap.ui.core">
 	<m:Page showHeader="false">
@@ -85,7 +85,7 @@
 						<ObjectPageSubSection>
 							<blocks>
 								<m:VBox>
-									<core:Fragment fragmentName="com.ingles.retail_pricing.Retail_Pricing.fragments.table" type="XML"/>
+									<core:Fragment fragmentName="Ingles.Mock.Retail_Pricing.fragments.table" type="XML"/>
 								</m:VBox>
 							</blocks>
 						</ObjectPageSubSection>

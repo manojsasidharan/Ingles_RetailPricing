@@ -10,7 +10,7 @@ sap.ui.define([
 ], function (Object, JSONModel, ValueHelpDialog, FilterBar, Filter, FilterOperator, Input, SearchField) {
 	"use strict";
 
-	return Object.extend("com.ingles.retail_pricing.Retail_Pricing.controller.ValueHelper", {
+	return Object.extend("Ingles.Mock.Retail_Pricing.controller.ValueHelper", {
 		srchHelpName: "",
 		srchHelpDialog: null,
 		srchHelpDialogName: "",

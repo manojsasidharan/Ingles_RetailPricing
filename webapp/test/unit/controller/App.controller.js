@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"com/ingles/retail_pricing/Retail_Pricing/controller/App.controller"
+	"Ingles/Mock/Retail_Pricing/controller/App.controller"
 ], function (Controller) {
 	"use strict";
 

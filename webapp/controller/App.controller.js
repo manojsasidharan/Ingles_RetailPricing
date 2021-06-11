@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
 	"use strict";
 
-	return Controller.extend("com.ingles.retail_pricing.Retail_Pricing.controller.App", {
+	return Controller.extend("Ingles.Mock.Retail_Pricing.controller.App", {
 		onInit: function () {
 			this.oRouter = this.getOwnerComponent().getRouter();
 			this.oRouter.attachRouteMatched(this.onRouteMatched, this);
